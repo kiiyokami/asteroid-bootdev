@@ -1,13 +1,12 @@
 import pygame
 
-from utils.circleshape import CircleShape
+from objects.circleshape import CircleShape
 from utils.constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED, LINE_WIDTH
 
 class Player(CircleShape):
     def __init__(self, x, y) -> None:
         super().__init__(x,y, PLAYER_RADIUS)
         self.rotation = 0
-
 
     # in the Player class
     def triangle(self) -> list[pygame.Vector2]:
