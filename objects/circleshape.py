@@ -1,5 +1,6 @@
 import pygame
 
+from utils.constants import LINE_WIDTH, ASTEROID_MAX_RADIUS, SCREEN_WIDTH, SCREEN_HEIGHT
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
@@ -17,12 +18,15 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
 
     def draw(self, screen: pygame.Surface) -> None:
-        # must override
-        pass
+        pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
 
     def update(self, dt: float) -> None:
-        # must override
-        pass
+        self.position += self.velocity * dt
+        
+        # off-screen objects never come back; drop them so groups don't grow forever
+        m = ASTEROID_MAX_RADIUS
+        if not (-m <= self.position.x <= SCREEN_WIDTH + m and -m <= self.position.y <= SCREEN_HEIGHT + m):
+            self.kill()
 
     def collides_with(self, other) -> bool:
         return self.position.distance_to(other.position) <= (self.radius + other.radius)
