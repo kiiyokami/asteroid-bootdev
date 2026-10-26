@@ -2,7 +2,7 @@ import random
 
 from objects.circleshape import CircleShape
 
-from utils.constants import ASTEROID_MIN_RADIUS, ASTEROID_MAX_RADIUS
+from utils.constants import ASTEROID_MIN_RADIUS
 from utils.logger import log_event
 
 class Asteroid(CircleShape):
